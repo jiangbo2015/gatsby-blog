@@ -27,8 +27,7 @@
     "license": "MIT",
     "main": "n/a",
     "scripts": {
-        "build": "gatsby build",
-        "deploy": "gatsby build --prefix-paths",
+        "build": "gatsby build --prefix-paths",
         "serve": "gatsby serve",
         "start": "gatsby develop"
     }
