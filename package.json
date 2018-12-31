@@ -28,7 +28,7 @@
     "main": "n/a",
     "scripts": {
         "build": "gatsby build --prefix-paths",
-        "serve": "gatsby serve",
+        "serve": "gatsby serve -p 80",
         "start": "gatsby develop"
     }
 }
