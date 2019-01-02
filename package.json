@@ -28,6 +28,7 @@
     "main": "n/a",
     "scripts": {
         "build": "gatsby build --prefix-paths",
+        "preserve": "npm run build",
         "serve": "gatsby serve -p 80",
         "start": "gatsby develop"
     }
