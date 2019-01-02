@@ -49,3 +49,17 @@ npm -v
 6.4.1
 
 ```
+
+### 补充
+
+修改`～/.bash_profile`也可以全局使用 node,npm, 不用建立符号连接了
+
+```
+export PATH=$PATH:/software/node-v10.15.0-linux-x64/bin
+```
+
+使其生效
+
+```
+source ~/.bash_profile
+```
