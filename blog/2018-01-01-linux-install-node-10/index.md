@@ -25,7 +25,9 @@ wget https://npm.taobao.org/mirrors/node/v10.15.0/node-v10.15.0-linux-x64.tar.xz
 tar -xvf node-v10.15.0-linux-x64.tar.xz
 ```
 
-第三步，建立`node`符号连接
+第三步，添加到全局环境变量
+
+建立`node`符号连接
 
 ```
 ln -s /software/node-v10.15.0-linux-x64/bin/node /usr/local/bin/node
@@ -38,7 +40,7 @@ node -v
 v10.15.0
 ```
 
-建立`npm`符号连接，这也是第三步一起的
+建立`npm`符号连接
 
 ```
 ln -s /software/node-v10.15.0-linux-x64/bin/npm /usr/local/bin/npm
