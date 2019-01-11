@@ -5,6 +5,8 @@ title: 'python中使用yield和for in 循环处理文件'
 category: 'Python'
 ---
 
+### python 中使用 yield 和 for in 循环处理文件
+
 ```python
 import os
 
