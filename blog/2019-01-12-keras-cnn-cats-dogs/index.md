@@ -7,9 +7,11 @@ category: 'Keras'
 
 这里不介绍 keras,卷积神经网络，二分类等概念，只做一个简单记录
 
+完整代码 [github](https://github.com/jiangbo2015/pykit/tree/master/cats_dogs)
+
 ```
 
-完整代码 [github](https://github.com/jiangbo2015/pykit/tree/master/cats_dogs)
+
 
 '''This script goes along the blog post
 "Building powerful image classification models using very little data"
