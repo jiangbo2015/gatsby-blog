@@ -141,8 +141,9 @@ def train():
     plt.figure()
     plt.plot(x, y, label="val_loss")
     plt.plot(x, y1, label="val_acc")
-    plt.show()
     plt.savefig('traffic.png')
+    plt.show()
+
 
 
 """
