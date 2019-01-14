@@ -17,7 +17,11 @@ traffic
 
 ### 主要功能点：数据加载，预处理，图像增强, 预测，数据可视化
 
-完整代码 [github](https://github.com/jiangbo2015/pykit/blob/master/traffic/CT.py)
+不使用 dropout
+![no-dropout]('./images/no-dropout.png')
+
+使用 dropout
+![dropout]('./images/dropout.png')
 
 ```
 from keras.preprocessing.image import ImageDataGenerator
@@ -40,48 +44,9 @@ import cv2
 import os
 import sys
 
-"""
-定义的常量
-"""
-EPOCHS = 20 # 循环次数
-BATCH_SIZE = 32 #每批处理的数量
-CLASS_NUM = 62 # 分类的数量
-IMG_SIZE = 32 # 图片大小
+```
 
-
-"""
-数据加载，返回图片列表，分类名称（如1，2等）
-该数据加载方法不太好，后面优化
-"""
-def load_data(path):
-    images = []
-    labels = []
-    imagePaths = sorted(list(paths.list_images(path)))
-    random.seed(42)
-    random.shuffle(imagePaths)
-
-    for file in imagePaths:
-        image = cv2.imread(file)
-        image = cv2.resize(image, (IMG_SIZE, IMG_SIZE))
-
-        image = img_to_array(image)
-        images.append(image)
-
-        label = int(file.split(os.path.sep)[-2])
-        labels.append(label)
-
-    images = np.asarray(images, dtype="float") / 255.0
-    labels = np.array(labels)
-
-    labels = to_categorical(labels, num_classes=CLASS_NUM)
-    return images, labels
-
-
-def gendata_from_file(filepath, batch_size):
-    pass
-
-
-
+```
 """
 创建模型
 """
@@ -110,72 +75,6 @@ def create_model():
 
     return model
 
-
-"""
-训练模型，先加载数据，使用图像增强来增加数据集数量，
-"""
-def train():
-    trainX, trainY = load_data('./data/train/')
-    testX, testY = load_data('./data/test/')
-
-    datagen = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
-            height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
-            horizontal_flip=True, fill_mode="nearest")
-
-    model = create_model()
-
-    model.summary()
-
-    model.compile(loss="categorical_crossentropy", optimizer='rmsprop',
-        metrics=["accuracy"])
-
-    history = model.fit_generator(datagen.flow(trainX, trainY, batch_size=BATCH_SIZE),
-        validation_data=(testX, testY), steps_per_epoch=len(trainX) // BATCH_SIZE,
-        epochs=EPOCHS, verbose=1)
-
-    model.save('traffic.h5')
-
-    #画图
-    x = np.arange(0, EPOCHS)
-    y = history.history['val_loss']
-
-    y1 = history.history['val_acc']
-
-    plt.figure()
-    plt.plot(x, y, label="val_loss")
-    plt.plot(x, y1, label="val_acc")
-    plt.savefig('traffic.png')
-    plt.show()
-
-
-
-"""
-预测
-"""
-def predict():
-    model = load_model('traffic.h5')
-    img = cv2.imread('./data/test/00031/00124_00000.png')
-    img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
-    x = img_to_array(img)
-    x = np.expand_dims(x, axis=0)
-    preds = model.predict_classes(x)
-    print(preds) # [31]
-
-
-if __name__=='__main__':
-    train()
-    # predict()
-
-
-
-# 32, 64, 3,3
-# loss: 0.3643 - acc: 0.8854 - val_loss: 0.2460 - val_acc: 0.9274
-#
-# 32, 64, 5,5
-# loss: 0.3329 - acc: 0.8952 - val_loss: 0.1920 - val_acc: 0.9488
-#
-# 0.3537 - acc: 0.8919 - val_loss: 0.2467 - val_acc: 0.9306
-#
-# loss: 0.2094 - acc: 0.9427 - val_loss: 0.1511 - val_acc: 0.9607
-
 ```
+
+完整代码 [github](https://github.com/jiangbo2015/pykit/blob/master/traffic/CT.py)
