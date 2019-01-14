@@ -18,10 +18,12 @@ traffic
 ### 主要功能点：数据加载，预处理，图像增强, 预测，数据可视化
 
 不使用 dropout
-![no-dropout](./no-dropout.png)
+
+![](./no-dropout.png)
 
 使用 dropout
-![dropout](./dropout.png)
+
+![](./dropout.png)
 
 ```
 from keras.preprocessing.image import ImageDataGenerator
