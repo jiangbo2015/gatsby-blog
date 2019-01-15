@@ -19,7 +19,7 @@ traffic
 
 不使用 dropout
 
-![](./no-dropout.png)
+![](./no_dropout.png)
 
 使用 dropout
 
