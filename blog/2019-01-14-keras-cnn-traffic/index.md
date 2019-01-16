@@ -1,6 +1,6 @@
 ---
 path: '/keras-cnn-traffic.html'
-date: '2019-01-13'
+date: '2019-01-14'
 title: 'keras cnn 卷积神经网络多分类(识别交通灯图片)'
 category: 'Keras'
 ---
@@ -24,6 +24,8 @@ traffic
 使用 dropout
 
 ![](./dropout.png)
+
+### 发现训练集准确率小于验证集准确率，出现了欠拟合，取消 Dropout 层后，训练集和测试集准确率都达到 97%
 
 ```
 from keras.preprocessing.image import ImageDataGenerator
@@ -62,16 +64,16 @@ def create_model():
     model = Sequential()
 
     # 第一层卷集核数量， 卷积核大小，填充方式，输入
-    model.add(Conv2D(32, kernel_size=(5, 5), input_shape=inputShape))
+    model.add(Conv2D(32, kernel_size=(3, 3), input_shape=inputShape))
     model.add(Activation("relu")) #激活
     model.add(MaxPooling2D(pool_size=(2, 2))) #池化，使用MaxPolling
 
-    model.add(Conv2D(64, kernel_size=(5, 5), activation="relu"))
+    model.add(Conv2D(64, kernel_size=(3, 3), activation="relu"))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Flatten())
 
-    model.add(Dense(500, activation="relu")) #全链接层
+    model.add(Flatten())
+    model.add(Dense(512, activation="relu")) #全链接层
 
     model.add(Dense(CLASS_NUM, activation="softmax")) #最后输出CLASS_NUM个
 
