@@ -17,15 +17,11 @@ traffic
 
 ### 主要功能点：数据加载，预处理，图像增强, 预测，数据可视化
 
+### 发现训练集准确率小于验证集准确率，出现了欠拟合，取消 Dropout 层后，训练集和测试集准确率都达到 97%
+
 不使用 dropout
 
 ![](./no_dropout.png)
-
-使用 dropout
-
-![](./dropout.png)
-
-### 发现训练集准确率小于验证集准确率，出现了欠拟合，取消 Dropout 层后，训练集和测试集准确率都达到 97%
 
 ```
 from keras.preprocessing.image import ImageDataGenerator
