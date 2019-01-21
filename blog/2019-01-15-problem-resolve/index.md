@@ -20,3 +20,11 @@ EACCES: permission denied, open ***
 import matplotlib
 matplotlib.use('TkAgg')
 ```
+
+### windows 控制台中文乱码
+
+在控制台输入以下命令回车
+
+```
+CHCP 65001
+```
