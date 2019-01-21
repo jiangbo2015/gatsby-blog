@@ -12,3 +12,11 @@ category: '笔记'
 ```
 EACCES: permission denied, open ***
 ```
+
+### matplotlib 在 virtualenv 中运行时报错： Python is not installed as a framework.
+
+```
+# 需要添加TkAgg
+import matplotlib
+matplotlib.use('TkAgg')
+```
