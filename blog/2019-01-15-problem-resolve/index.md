@@ -2,7 +2,7 @@
 path: '/problem-resolve.html'
 date: '2019-01-15'
 title: '遇到的一些问题汇总，及解决方案'
-category: '笔记'
+category: 'notebook'
 ---
 
 ### 遇到的一些问题汇总，及解决方案
