@@ -5,9 +5,9 @@ title: 'jupyter 快捷键'
 category: 'jupyter'
 ---
 
-### 首先进入命令行模式（ESC 或者 ctrl+m)
+# 首先进入命令行模式（ESC 或者 ctrl+m)
 
-操作 cell
+### 操作 cell
 
 -   a: 在上方插入新的 cell
 -   b: 在方插入新的 cell
@@ -18,13 +18,13 @@ category: 'jupyter'
 -   v: 在下方粘贴 cell
 -   shift + v: 在上方粘贴 cell
 
-cell 模式切换
+### cell 模式切换
 
 -   m: 转换为 markdown
 -   y: 转换为 code
 -   r: 转换为文本(raw)
 
-运行相关
+### 运行相关
 
 -   shift + enter: 运行当前 cell，并切换到一个
 -   ctrl + enter: 运行当前 cell
