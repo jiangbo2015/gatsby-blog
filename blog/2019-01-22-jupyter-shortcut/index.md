@@ -5,7 +5,7 @@ title: 'jupyter 快捷键'
 category: 'jupyter'
 ---
 
-# 首先进入命令行模式（ESC 或者 ctrl+m)
+# 首先进入命令模式（ESC 或者 ctrl+m)
 
 ### 操作 cell
 
