@@ -16,14 +16,16 @@ category: 'scrapy'
 -   通过属性获取
 
 res.xpath(//h1[@class="red"])
-
 res.xpath(//h1[@id="one"])
-
 res.xpath(//h1[start-with(@class, "red")]) 以 class=red*开头的 h1
 res.xpath(//h1[end-with(@class, "red")]) 以 class=*red 结尾的 h1
 res.xpath(//h1[contains(@class, "red")]) class 中包含 red 的好 h1
 res.xpath(//h1[@class="red" and @id="one"])
 res.xpath(//h1[@class="red" or @id="one"])
+
+-   通过索引
+
+res.xpath(//h1[2])
 
 -   多个子节点文本
 
@@ -36,3 +38,7 @@ third
 ```
 
 res.xpath(string(//div[@class="multiply"]))
+
+-   使用 scrapy 时，extract() 返回一个列表，通常使用 extract()[0] 来获取内容
+
+-   extract_first() 等同于 extract()[0]
