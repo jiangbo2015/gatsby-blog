@@ -1,15 +1,17 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import styled, { createGlobalStyle } from 'styled-components'
-import { Flex } from '@rebass/grid'
-import { FaGithub, FaHome, FaUser, FaPen, FaTags } from 'react-icons/fa'
-import Link from '../components/Link'
+import React from "react"
+import { graphql, Link } from "gatsby"
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
+import { Flex, Box, Text } from "rebass"
+import Helmet from "react-helmet"
+import { FaGithub, FaHome, FaUser, FaPen, FaTags } from "react-icons/fa"
+
+// js node 算法 python css react vue
 
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: georgia, serif;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
   }
   a {
     text-decoration: none;
@@ -18,83 +20,86 @@ const GlobalStyle = createGlobalStyle`
   html,body,#___gatsby{
     height: 100%;
   }
+  /* @font-face
+{
+font-family: yuque;
+src: url('https://at.alicdn.com/t/font_227976_8x82xgl0oi.woff2')
+} */
+
  
+`
+const theme = {
+	color: {
+		primary: "#ce0f67",
+		gray: "#999",
+		main: "#000"
+	}
+}
 
+const Nav = styled(Box)`
+	font-weight: bold;
+	font-size: 20px;
+	color: #999;
+	transition: all 0.6s;
+	&:hover {
+		color: ${theme.color.primary};
+		transition: all 0.6s;
+	}
+	.active {
+		color: ${theme.color.primary};
+	}
 `
-
-const Root = styled(Flex)`
-    background: #fbfafc;
-    flex-direction: column;
-    height: 100%;
-`
-
-const Header = styled(Flex)`
-    height: 50px;
-    border-bottom: 1px solid #eee;
-    justify-content: center;
-    background: #2196f3;
-`
-const Nav = styled(Flex)`
-    margin-left: 20px;
-    cursor: pointer;
-    color: #fff;
-    &:hover {
-        color: #eaeaea;
-        transition: color 0.3s;
-    }
-`
-const NavWrap = styled(Flex)`
-    width: 1000px;
-    align-items: center;
-    justify-content: flex-end;
-    position: relative;
-`
-const Main = styled(Flex)`
-    width: 1000px;
-    flex-direction: column;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    min-height: 600px;
-`
-
-const NavGithub = styled(Nav)`
-    position: absolute;
-    right: 30px;
-    align-self: center;
-`
-const LogoWrap = styled(Flex)`
-    position: absolute;
-    align-self: center;
-    left: 0;
-    color: #fff;
-    font-size: 30px;
+const Name = styled(Text)`
+	font-size: 26px;
+	font-weight: bold;
+	color: #000;
+	text-shadow: 1px 1px 0 #e4f1ff;
 `
 
 export default ({ children }) => (
-    <Root>
-        <GlobalStyle />
-        <Header>
-            <NavWrap>
-                <LogoWrap>
-                    <Link to="/">Bob Jiang</Link>
-                </LogoWrap>
-                <Nav>
-                    <Link to="/about">About</Link>
-                </Nav>
-                <Nav>
-                    <Link to="/categories">Categories</Link>
-                </Nav>
-                <Nav>
-                    <Link to="/search">Search</Link>
-                </Nav>
-                <Nav>
-                    <Link to="/contact">Contact</Link>
-                </Nav>
-            </NavWrap>
-            <NavGithub>
-                <FaGithub />
-            </NavGithub>
-        </Header>
-        <Main>{children}</Main>
-    </Root>
+	<>
+		<GlobalStyle />
+		<Helmet></Helmet>
+		<ThemeProvider theme={theme}>
+			<Flex
+				py="20px"
+				backgroundColor="#fff"
+				px="20px"
+				sx={{
+					position: "sticky",
+					top: 0,
+					zIndex: 9,
+					boxShadow: "0px 4px 8px 0px rgba(0,0,0,0.08)"
+				}}
+			>
+				<Flex flex="1" mx="auto" maxWidth="1200px">
+					<Link to="/">
+						<Name color={theme.color.primary}>姜波</Name>
+					</Link>
+					<Flex ml="auto" alignItems="center">
+						<Nav ml="24px">
+							<Link to="/categories" activeClassName="active">
+								分类
+							</Link>
+						</Nav>
+						<Nav ml="24px">
+							<Link to="/about" activeClassName="active">
+								关于
+							</Link>
+						</Nav>
+						<Nav ml="24px">
+							<a href="https://github.com/" target="_blank">
+								<Flex>
+									<FaGithub size="20px" />
+								</Flex>
+							</a>
+						</Nav>
+					</Flex>
+				</Flex>
+			</Flex>
+			<Box mx="auto" maxWidth="1200px" py="50px">
+				{children}
+			</Box>
+		</ThemeProvider>
+	</>
 )
