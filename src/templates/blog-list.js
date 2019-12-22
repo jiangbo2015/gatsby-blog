@@ -38,7 +38,6 @@ export const DateInfo = ({ theme, category, date }) => (
 
 function Index(props) {
 	const theme = useContext(ThemeContext)
-	console.log(props)
 	// const { edges: posts } = data.allMarkdownRemark
 	const { group, first, index, last } = props.pageContext
 	const linkProps = {
@@ -97,12 +96,8 @@ export default props => {
 }
 
 export const blogListQuery = graphql`
-	query blogListQuery($skip: Int!, $limit: Int!) {
-		allMarkdownRemark(
-			sort: { fields: [frontmatter___date], order: DESC }
-			limit: $limit
-			skip: $skip
-		) {
+	query blogListQuery {
+		allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
 			edges {
 				node {
 					excerpt(pruneLength: 200)
