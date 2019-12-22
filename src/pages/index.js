@@ -67,6 +67,11 @@ function Index(props) {
 						</Link>
 					)
 				})}
+			<Flex justifyContent="center">
+				<Text fontSize="24px" color={theme.color.primary} fontWeight="bold">
+					<Link to="/blog">更多...</Link>
+				</Text>
+			</Flex>
 		</>
 	)
 }
