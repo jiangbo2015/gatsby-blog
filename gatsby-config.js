@@ -4,12 +4,15 @@ module.exports = {
 	pathPrefix: `/`,
 	siteMetadata: {
 		author: "jiangbo",
-		title: `姜波的博客`
+		title: `姜波的博客`,
+		siteUrl: `https://www.bobjiang.cn`
 	},
+
 	plugins: [
 		"gatsby-plugin-catch-links",
 		`gatsby-plugin-styled-components`,
 		"gatsby-plugin-react-helmet",
+		`gatsby-plugin-sitemap`,
 		{
 			resolve: "gatsby-source-filesystem",
 			options: {
