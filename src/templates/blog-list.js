@@ -37,14 +37,19 @@ export const DateInfo = ({ theme, category, date }) => (
 )
 
 function Index(props) {
-	const { data } = props
 	const theme = useContext(ThemeContext)
-	console.log(theme)
-	const { edges: posts } = data.allMarkdownRemark
+	console.log(props)
+	// const { edges: posts } = data.allMarkdownRemark
+	const { group, first, index, last } = props.pageContext
+	const linkProps = {
+		color: theme.color.primary,
+		fontSize: "24px",
+		fontWeight: "bold"
+	}
 	return (
 		<>
-			{posts
-				.filter(post => post.node.frontmatter.title.length > 0)
+			{group
+				// .filter(post => post.node.frontmatter.title.length > 0)
 				.map(({ node: post }, index) => {
 					return (
 						<Link to={post.frontmatter.path} key={index}>
@@ -67,6 +72,18 @@ function Index(props) {
 						</Link>
 					)
 				})}
+			<Flex justifyContent="center">
+				{!first && (
+					<Text {...linkProps}>
+						<Link to={`blog/${index - 1 === 1 ? "" : index - 1}`}>上一页</Link>
+					</Text>
+				)}
+				{!last && (
+					<Text ml={!first ? "20px" : 0} {...linkProps}>
+						<Link to={`blog/${index + 1}`}>下一页</Link>
+					</Text>
+				)}
+			</Flex>
 		</>
 	)
 }
@@ -79,9 +96,13 @@ export default props => {
 	)
 }
 
-export const pageQuery = graphql`
-	query IndexQuery {
-		allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+export const blogListQuery = graphql`
+	query blogListQuery($skip: Int!, $limit: Int!) {
+		allMarkdownRemark(
+			sort: { fields: [frontmatter___date], order: DESC }
+			limit: $limit
+			skip: $skip
+		) {
 			edges {
 				node {
 					excerpt(pruneLength: 200)
