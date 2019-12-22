@@ -52,7 +52,6 @@ const Nav = styled(Box)`
 const Name = styled(Text)`
 	font-size: 26px;
 	font-weight: bold;
-	color: #000;
 	text-shadow: 1px 1px 0 #e4f1ff;
 `
 
