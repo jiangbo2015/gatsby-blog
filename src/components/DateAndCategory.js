@@ -7,7 +7,7 @@ import { Box, Flex, Text } from "rebass/styled-components";
 
 export default  ({ category, date }) => (
 	<Flex mt={[3]}>
-		<Link to={`categories/${category}`}>
+		<Link to={`/categories/${category}`}>
 			<Flex fontSize="16px" color="primary" alignItems="center">
 				<FaTag size="14px"></FaTag>
 				<Text ml="5px">{category}</Text>
