@@ -1,96 +1,29 @@
-import React, { useContext } from "react"
-import { graphql, Link } from "gatsby"
-import styled, { ThemeContext } from "styled-components"
-import { Flex, Text, Box } from "rebass"
-import { FaTag } from "react-icons/fa"
+import { graphql, Link } from "gatsby";
+import React from "react";
+import Layout from "../components/Layout";
+import ListItem from '../components/ListItem';
+import Paginate from '../components/Paginate';
 
-import Layout from "../components/Layout"
 
-const List = styled(Flex)`
-	box-shadow: rgba(25, 17, 34, 0.05) 0px 3px 10px;
-
-	background: #fff;
-	flex-direction: column;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: all 0.3s;
-	&:hover {
-		transform: translateY(-3px);
-		box-shadow: rgba(25, 17, 34, 0.1) 0px 10px 42px;
-		transition: all 0.3s;
-	}
-`
-
-export const DateInfo = ({ theme, category, date }) => (
-	<>
-		<Link to={`categories/${category}`}>
-			<Flex fontSize="16px" color={theme.color.primary} alignItems="center">
-				<FaTag size="14px"></FaTag>
-				<Text ml="5px">{category}</Text>
-			</Flex>
-		</Link>
-		<Box mx="10px">/</Box>
-		<Text fontSize="16px" color={theme.color.gray}>
-			{date}
-		</Text>
-	</>
-)
-
-function Index(props) {
-	const theme = useContext(ThemeContext)
-	// const { edges: posts } = data.allMarkdownRemark
-	const { group, first, index, last } = props.pageContext
-	const linkProps = {
-		color: theme.color.primary,
-		fontSize: "24px",
-		fontWeight: "bold"
-	}
-	return (
-		<>
-			{group
-				// .filter(post => post.node.frontmatter.title.length > 0)
-				.map(({ node: post }, index) => {
-					return (
-						<Link to={post.frontmatter.path} key={index}>
-							<List key={post.id} p="50px" mb="60px">
-								<Text fontSize="28px" color={theme.color.main}>
-									{post.frontmatter.title}
-								</Text>
-
-								<Box fontSize="20px" color={theme.color.gray} py="20px">
-									{post.excerpt}
-								</Box>
-								<Flex>
-									<DateInfo
-										theme={theme}
-										category={post.frontmatter.category}
-										date={post.frontmatter.date}
-									></DateInfo>
-								</Flex>
-							</List>
-						</Link>
-					)
-				})}
-			<Flex justifyContent="center">
-				{!first && (
-					<Text {...linkProps}>
-						<Link to={`blog/${index - 1 === 1 ? "" : index - 1}`}>上一页</Link>
-					</Text>
-				)}
-				{!last && (
-					<Text ml={!first ? "20px" : 0} {...linkProps}>
-						<Link to={`blog/${index + 1}`}>下一页</Link>
-					</Text>
-				)}
-			</Flex>
-		</>
-	)
-}
 
 export default props => {
+	const { group, first, index, last } = props.pageContext
+
 	return (
 		<Layout>
-			<Index {...props} />
+			{group.map(({ node: post }, index) => {
+				return (
+					<Link to={post.frontmatter.path} key={index}>
+						<ListItem
+							title={post.frontmatter.title}
+							expert={post.excerpt}
+							category={post.frontmatter.category}
+							date={post.frontmatter.date}
+						></ListItem>
+					</Link>
+				)
+			})}
+			<Paginate last={last} first={first} index={index}></Paginate>
 		</Layout>
 	)
 }

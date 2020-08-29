@@ -75,8 +75,8 @@ exports.createPages = ({ actions, graphql }) => {
 			edges: result.data.allMarkdownRemark.edges,
 			createPage: createPage,
 			pageTemplate: "src/templates/blog-list.js",
-			pageLength: 5, // This is optional and defaults to 10 if not used
-			pathPrefix: "/blog", // This is optional and defaults to an empty string if not used
+			pageLength: 3, // This is optional and defaults to 10 if not used
+			// pathPrefix: "/blog", // This is optional and defaults to an empty string if not used
 			context: {} // This is optional and defaults to an empty object if not used
 		})
 

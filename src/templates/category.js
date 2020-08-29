@@ -1,52 +1,35 @@
-import React, { useContext } from "react"
-import { Flex, Text, Box } from "rebass"
-import styled, { ThemeContext } from "styled-components"
+import { Link } from "gatsby";
+import React from "react";
+import { Box, Flex, Heading, Text } from "rebass/styled-components";
+import Categories from '../components/Categories';
+import Layout from "../components/Layout";
 
-import Layout from "../components/Layout"
-import { Link } from "gatsby"
 
-const Title = styled(Flex)`
-	font-size: 18px;
-	font-weight: bold;
-	padding: 20px;
-	border-radius: 10px;
-	border: 1px solid #eee;
-	color: #000;
-	align-items: center;
-	justify-content: center;
-	transition: all 0.6s;
-	position: relative;
-	&:hover {
-		transition: all 0.6s;
-		color: #fff;
-		background: #ce0f67;
-	}
-`
 
-function Category({ posts, post, category, ...others }) {
-	const theme = useContext(ThemeContext)
-	console.log(post)
+
+function Category({ posts, post, category,}) {
 	if (category) {
 		return (
 			<Flex flexDirection="column">
-				<Text my="30px" fontSize="20px" color={theme.color.primary}>
+				<Heading my={[2]} color="primary">
 					{category}
-				</Text>
+				</Heading>
 				{post.map(({ id, frontmatter }) => (
 					<Link to={frontmatter.path}>
 						<Flex
 							key={id}
-							mb="20px"
-							color={theme.color.gray}
+							my={[2]}
+							color="gray"
 							justifyContent="space-between"
 							sx={{
+								transition: "all 0.6s",
 								"&:hover": {
-									color: theme.color.primary
+									color: "primary",
+									transition: "all 0.6s"
 								}
 							}}
 						>
-							{frontmatter.title}
-
+							<Box>{frontmatter.title}</Box>
 							<Text>{frontmatter.date}</Text>
 						</Flex>
 					</Link>
@@ -55,24 +38,11 @@ function Category({ posts, post, category, ...others }) {
 		)
 	}
 	return (
-		<Flex flexWrap="wrap" maxWidth="800px" mx="auto">
+		<Flex flexWrap="wrap" mx="auto">
 			{Object.keys(posts).map((item, index) => (
-				<Box key={index} ml="20px" mb="20px">
+				<Box key={index} m={[3]}>
 					<Link to={`/categories/${item}`}>
-						<Title>
-							<Text>{item}</Text>
-							<Text
-								ml="10px"
-								fontSize="14px"
-								sx={{
-									position: "absolute",
-									bottom: 0,
-									right: 0
-								}}
-							>
-								({posts[item].length})
-							</Text>
-						</Title>
+						<Categories item={item} length={posts[item].length}></Categories>
 					</Link>
 				</Box>
 			))}
@@ -89,15 +59,3 @@ export default function TagsTemplate(props) {
 	)
 }
 
-// var arr = [10,9,8,7,6,5,4,3,2,1]
-
-// 10
-// 9，8
-// 7，6，5
-// 4，3，2，1
-
-// for(var i = 1; i < 9; i++){
-//     for(var j = 1; j < i; j++){
-
-//     }
-// }

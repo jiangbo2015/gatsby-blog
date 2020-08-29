@@ -1,18 +1,19 @@
-const { name } = require("./package.json")
 
 module.exports = {
 	pathPrefix: `/`,
 	siteMetadata: {
 		author: "jiangbo",
 		title: `姜波的博客`,
-		siteUrl: `https://www.bobjiang.cn`
+        siteUrl: `https://www.bobjiang.cn`,
+        description: `个人博客，分享前后端技术，做技术积累`
 	},
 
 	plugins: [
 		"gatsby-plugin-catch-links",
 		`gatsby-plugin-styled-components`,
 		"gatsby-plugin-react-helmet",
-		`gatsby-plugin-sitemap`,
+        `gatsby-plugin-sitemap`,
+        `gatsby-plugin-sharp`,
 		{
 			resolve: "gatsby-source-filesystem",
 			options: {
