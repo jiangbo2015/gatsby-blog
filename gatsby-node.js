@@ -1,6 +1,5 @@
 const path = require("path")
 const { createFilePath } = require("gatsby-source-filesystem")
-const createPaginatedPages = require("gatsby-paginate")
 
 const createTagPages = (createPage, edges) => {
 	const categoryTemplate = path.resolve(`src/templates/category.js`)
@@ -62,6 +61,9 @@ exports.createPages = ({ actions, graphql }) => {
 						}
 					}
 				}
+				pageInfo {
+					totalCount
+				}
 			}
 		}
 	`).then(result => {
@@ -69,16 +71,7 @@ exports.createPages = ({ actions, graphql }) => {
 			return Promise.reject(result.errors)
 		}
 
-		const posts = result.data.allMarkdownRemark.edges
-
-		createPaginatedPages({
-			edges: result.data.allMarkdownRemark.edges,
-			createPage: createPage,
-			pageTemplate: "src/templates/blog-list.js",
-			pageLength: 3, // This is optional and defaults to 10 if not used
-			// pathPrefix: "/blog", // This is optional and defaults to an empty string if not used
-			context: {} // This is optional and defaults to an empty object if not used
-		})
+		const posts = result.data.allMarkdownRemark.edges	
 
 		createTagPages(createPage, posts)
 

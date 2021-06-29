@@ -33,3 +33,4 @@ public/
 yarn-error.log
 
 .vercel
+yarn.lock

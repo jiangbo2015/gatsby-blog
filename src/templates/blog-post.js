@@ -1,6 +1,7 @@
 import "prismjs/themes/prism-solarizedlight.css";
 import React from "react";
 import Helmet from "react-helmet";
+import {graphql} from 'gatsby';
 import { Box, Flex, Heading } from "rebass/styled-components";
 import DateAndCategory from '../components/DateAndCategory';
 import Layout from "../components/Layout";
