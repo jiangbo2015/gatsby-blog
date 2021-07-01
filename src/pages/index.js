@@ -6,10 +6,11 @@ import { FaTag } from "react-icons/fa"
 import DateAndCategory from "../components/DateAndCategory"
 
 export default ({ data }) => {
-    const { pageInfo, edges } = data.allMarkdownRemark
+    console.log(data, "data")
+    // const { pageInfo, edges } = data.allMarkdownRemark
     return (
         <Layout>
-            <Flex mb={3} alignItems="center">
+            {/* <Flex mb={3} alignItems="center">
                 <Heading>最近10条 </Heading>
                 <Text>(共{pageInfo.totalCount}条)</Text>
             </Flex>
@@ -32,28 +33,47 @@ export default ({ data }) => {
                         date={frontmatter.date}
                     ></DateAndCategory>
                 </Box>
-            ))}
+            ))} */}
         </Layout>
     )
 }
 
-export const queryHome = graphql`
-    query home {
-        allMarkdownRemark(limit: 10) {
-            edges {
-                node {
-                    id
-                    frontmatter {
-                        title
-                        date(formatString: "YYYY-MM-DD")
-                        path
-                        category
-                    }
-                }
-            }
-            pageInfo {
-                totalCount
-            }
-        }
-    }
-`
+// export const queryHome = graphql`
+//     query home {
+//         allMarkdownRemark(limit: 10) {
+//             edges {
+//                 node {
+//                     id
+//                     frontmatter {
+//                         title
+//                         date(formatString: "YYYY-MM-DD")
+//                         path
+//                         category
+//                     }
+//                 }
+//             }
+//             pageInfo {
+//                 totalCount
+//             }
+//         }
+//     }
+// `
+
+// export const queryHome = graphql`
+//     query home {
+//         allYuqueDoc {
+//             edges {
+//                 node {
+//                     title
+//                     slug
+//                     cover
+//                     description
+//                     created_at
+//                     childMarkdownRemark {
+//                         html
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// `
